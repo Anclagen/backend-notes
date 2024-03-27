@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/css/output.css" rel="stylesheet" />
+    <script src="scripts.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="/index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+     <main class="container mx-auto flex-grow">
+      <h1 class="text-3xl font-bold text-center my-5">Lesson 1.1</h1>
+      <h2 class="text-2xl font-semibold my-4">Part 1</h2>
+      <h3 class="my-2 text-lg font-semibold">The Code</h3>
+      <p>index.html</p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap"><code class="language-html">
+      &lt;p class="my-2"&gt;I am sentence number 1 and I was printed without JS.&lt;/p&gt;
+      &lt;p class="my-2" id="within"&gt;&lt;/p&gt;
+      &lt;p class="my-2" id="file"&gt;&lt;/p&gt;
+        </code></pre>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+      &lt;script&gt;
+        document.getElementById("within").innerHTML = "I am sentence number 2 and I was printed with JS from the HTML file.";
+      &lt;/script&gt;
+        </code></pre>
+      </div>
+
+      <p>scripts.js</p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        document.getElementById("file").innerText = "I am sentence number 3 and I was printed with JS from a js file.";
+       </code></pre>
+      </div>
+      <h3 class="my-2 text-lg font-semibold">The Output</h3>
+      <p class="my-2">I am sentence number 1 and I was printed without JS.</p>
+      <p class="my-2" id="within"></p>
+      <p class="my-2" id="file"></p>
+      <h2 class="text-2xl font-semibold my-4">Part 2</h2>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      let a = "a" + 1 + 2 + 1.2; // "a121.2"
+
+      let b = 1 + 1.2 + "a" + 1; // "11.2a1"
+
+      let c = "" == 0; // true
+
+      let d = !(1 + 2 == 3) || !(2 > 4); // true
+
+      let e = 0.1 + 0.2; // 0.3 or 0.30000000000000004
+
+      let f = 9 % 2 ** 3; // 1
+
+      let g = -1 / 0; // -Infinity
+          </code>
+        </pre>
+    </main>
+    <footer class="bg-black text-white text-center p-5 mt-10">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+  <script>
+    document.getElementById("within").innerHTML = "I am sentence number 2 and I was printed with JS from the HTML file."; 
+  </script>
+</html>

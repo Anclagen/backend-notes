@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/css/output.css" rel="stylesheet" />
+    <script src="scripts.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="/index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+    <main class="container mx-auto flex-grow">
+      <h1 class="text-3xl font-bold text-center my-5">Lesson 1.2</h1>
+      <h2 class="text-2xl font-semibold my-4">Task</h2>
+
+      We have a string:
+      <pre>
+  <code class="language-javascript">
+    let text = "My favourite book is \"Harry Potter\". I love this book so much.";
+  </code>
+</pre>
+      <h3 class="text-lg font-semibold">Generate the following with string methods:</h3>
+      <p>
+        1. resultText1: favourite book is “Harry Potter”
+        <br />
+        2. resultText2: My book is love.
+        <br />
+        3. resultText3: My book is “HARRY POTTER”.
+        <br />
+        4. resultText4: potter harry
+      </p>
+
+      Try to minimise the number of variables you use, but try not to perform all the operations in one line.
+      <h3 class="my-2 text-lg font-semibold">1</h3>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+  let text = 'My favourite book is "Harry Potter". I love this book so much.';
+
+  let resultText1 = text.slice(3, 27);
+  console.log(resultText1); // favourite book is “Harry Potter”
+  
+  let resultText2 = text.slice(0, 3) + text.slice(13, 21) + text.slice(39, 43) + text.slice(61, 62);
+  console.log(resultText2); // My book is love.
+  
+  let resultText3 = text.slice(0, 3) + text.slice(13, 21) + text.slice(21, 35).toUpperCase() + text.slice(61, 62);
+  console.log(resultText3); // My book is “HARRY POTTER”.
+  
+  let resultText4 = text.slice(28, 34).toLowerCase() + text.slice(2, 3) + text.slice(22, 27).toLowerCase();
+  console.log(resultText4); // potter harry
+       </code></pre>
+      </div>
+    </main>
+    <footer class="bg-black text-white text-center p-5 mt-10">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+</html>

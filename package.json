@@ -1,0 +1,15 @@
+{
+  "name": "programming-foundations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:css": "npx tailwindcss -i ./src/css/styles.css -o ./src/css/output.css --watch"
+  },
+  "author": "me",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

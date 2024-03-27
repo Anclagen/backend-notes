@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/css/output.css" rel="stylesheet" />
+    <script src="scripts.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="/index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+    <main class="container mx-auto pb-10">
+      <h1 class="text-3xl font-bold text-center my-5">Lesson 1.4</h1>
+      <h2 class="text-2xl font-semibold my-4">Task Part 1</h2>
+      <ul>
+        <li>
+          1. Load the data from the user (via prompt). You should get a number greater than 1 but less than 20. If the data from the user is incorrect, you should show them another prompt repeatedly
+          until you get the correct number.
+        </li>
+        <li>2. Print all multiplicities of these positive integer numbers in the console that are less than 1000 and not multiplicities of 23. Which loop is best for our task?</li>
+      </ul>
+
+      <h3 class="text-lg font-semibold my-4 mb-2">The Code</h3>
+      <pre>
+        <code class="language-javascript">
+    // 1
+    let valueOne = 0;
+    
+    while (valueOne > 20 || valueOne < 1) {
+      valueOne = parseFloat(prompt("Enter a number between 1 and 20"));
+    }
+    
+    // 2
+    function getMultiplicities(value) {
+      for (let i = 1; i <= 1000; i++) {
+        if (i % value === 0) {
+          console.log(i);
+        }
+      }
+    }
+    
+    getMultiplicities(23);
+        </code>
+      </pre>
+
+      <p class="font-bold">Values in the console:</p>
+      <p id="result"></p>
+
+      <h2 class="text-2xl font-semibold my-4 mb-2">Task Part 2</h2>
+      <ul>
+        <li>1. Get the input value from the user. The value should be between 0 and 100.</li>
+        <li>2. Create two buttons and apply two functions to them on click: one will increase the stored value by 1, while the second function will decrease it.</li>
+        <li>
+          3. After every button click, show the current variable value in the console. After reaching either 0 or 100, instead of increasing/decreasing the value, communicate “Game over” in the
+          console.
+        </li>
+      </ul>
+      <h3 class="text-lg font-semibold my-4 mb-2">The Code</h3>
+      <pre>
+        <code class="language-javascript">   
+      // 1
+
+      let valueTwo = "";
+
+      while (valueTwo >= 100 || valueTwo <= 0 || isNaN(valueTwo)) {
+        valueTwo = parseFloat(prompt("Enter a number between 0 and 100"));
+      }
+
+      // 2 + 3
+      let gameOver = false;
+      function gameOver() {
+        gameOver = true;
+        console.log("Game over");
+        document.getElementById("gameOver").innerHTML = "Game over";
+      }
+      
+      function increment() {
+        if (valueTwo === 100 || gameOver === true) {
+          gameOver();
+          return;
+        } else {
+          valueTwo++;
+          document.getElementById("result2").innerHTML = valueTwo;
+          console.log(valueTwo);
+        }
+      }
+      
+      function decrement() {
+        if (valueTwo === 0 || gameOver === true) {
+          gameOver();
+          return;
+        } else {
+          valueTwo--;
+          document.getElementById("result2").innerHTML = valueTwo;
+          console.log(valueTwo);
+        }
+      }
+      
+      // reset the game
+      function reset() {
+        gameOver = false;
+        valueTwo = "";
+        while (valueTwo >= 100 || valueTwo <= 0 || isNaN(valueTwo)) {
+          valueTwo = parseFloat(prompt("Enter a number between 0 and 100"));
+        }
+        document.getElementById("result2").innerHTML = valueTwo;
+        document.getElementById("gameOver").innerHTML = "";
+      }
+      
+        </code>
+      </pre>
+      <h3 class="text-lg font-semibold my-4 mb-2">The Buttons</h3>
+      <button class="p-3 border border-white text-white bg-black font-semibold text-lg rounded-xl" onclick="increment()">Increase</button>
+      <button class="p-3 border border-black text-black bg-white font-semibold text-lg rounded-xl" onclick="decrement()">Decrease</button>
+      <p class="font-bold mt-5">Value: <span id="result2"></span> <span id="gameOver"></span></p>
+      <button class="mt-4 p-3 border border-black text-black bg-white font-semibold text-lg rounded-xl" onclick="reset()">Reset</button>
+    </main>
+    <footer class="bg-black text-white text-center p-5 mt-10">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+</html>
