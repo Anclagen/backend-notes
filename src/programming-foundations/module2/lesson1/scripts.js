@@ -22,7 +22,7 @@ class MenuItem {
 
 class Pizza extends MenuItem {
   constructor(name, price, toppings) {
-    super(name, price); // Correctly call super once, passing needed arguments
+    super(name, price);
     this._toppings = toppings;
   }
 
@@ -33,7 +33,7 @@ class Pizza extends MenuItem {
 
 class Pasta extends MenuItem {
   constructor(name, price, isVegetarian) {
-    super(name, price); // Correctly call super once, passing needed arguments
+    super(name, price);
     this._isVegetarian = isVegetarian;
   }
 
@@ -44,7 +44,7 @@ class Pasta extends MenuItem {
 
 class Pancake extends MenuItem {
   constructor(name, price, isSweet) {
-    super(name, price); // Correctly call super once, passing needed arguments
+    super(name, price);
     this._isSweet = isSweet;
   }
 
@@ -64,6 +64,8 @@ console.log(pasta);
 console.log(pancake);
 
 console.log("Pizza:", "\n", "name:", pizza.name, "\n", "price:", pizza.price, "\n", "Toppings:", pizza.toppings);
+//user ` instead of " to use template literals
+console.log(`Pizza:\nname: ${pizza.name}\nprice: ${pizza.price}\nToppings: ${pizza.toppings.join(", ")}`);
 console.log("Pasta:", "\n", "name:", pasta.name, "\n", "price:", pasta.price, "\n", "Is Vegetarian:", pasta.isVegetarian);
 console.log("Pancake:", "\n", "name:", pancake.name, "\n", "price:", pancake.price, "\n", "Is Sweet:", pancake.isSweet);
 pizza.newPrice = 12.99;
