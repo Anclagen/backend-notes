@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="./notes.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+    <link href="../../../css/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="../../../../index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+    <main class="container mx-auto flex-grow">
+      <h1 class="text-3xl font-bold text-center my-5">Lesson 2.2 Notes: Algorithms & Data Structures</h1>
+      <h2 class="text-2xl font-semibold my-4">Sets</h2>
+
+      <p><b>Purpose:</b> A Set is a collection of unique values; no duplicates are allowed.</p>
+      <p><b>Key Methods:</b> .add(value), .delete(value), .has(value), .clear(), .size.</p>
+      <p><b>Use Case:</b> When you need a list of items with no duplicate</p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      const mySet = new Set();
+      mySet.add("apple");
+      mySet.add("banana");
+      mySet.add("apple"); // Duplicate, not added.
+      console.log(mySet.has("apple")); // true
+      console.log(mySet.size); // 2
+      mySet.delete("banana");
+          </code>
+        </pre>
+      </div>
+
+      <p>We can also create intersections and differences of sets or subsets. We can also check if a set is a subset of another set.</p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      class CustomSet {
+        constructor() {
+          this.set = []; // Initializes an empty array to hold the set's elements
+        }
+      
+        // Adds a value to the set if it doesn't already exist
+        add(value) {
+          if (!this.has(value)) { // Checks if the value is not already in the set
+            this.set.push(value); // Adds the value to the set
+          }
+        }
+      
+        // Removes a value from the set
+        delete(value) {
+          this.set = this.set.filter((element) => element !== value); // Creates a new array excluding the value to be removed
+        }
+      
+        // Checks if a value is in the set
+        has(value) {
+          return this.set.includes(value); // Returns true if the value is found in the set, otherwise false
+        }
+      
+        // Returns a new CustomSet that is the union of this set and another set
+        union(otherSet) {
+          const unionSet = new CustomSet();
+          this.set.forEach((element) => unionSet.add(element)); // Adds all elements from the current set to the union set
+          otherSet.set.forEach((element) => unionSet.add(element)); // Adds all elements from the other set to the union set, excluding duplicates
+          return unionSet;
+        }
+      
+        // Returns a new CustomSet that is the intersection of this set and another set
+        intersection(otherSet) {
+          const intersectionSet = new CustomSet();
+          this.set.forEach((element) => {
+            if (otherSet.has(element)) { // If an element is in both sets
+              intersectionSet.add(element); // Adds it to the intersection set
+            }
+          });
+          return intersectionSet;
+        }
+      
+        // Returns a new CustomSet that is the difference of this set and another set
+        difference(otherSet) {
+          const differenceSet = new CustomSet();
+          this.set.forEach((element) => {
+            if (!otherSet.has(element)) { // If an element is not in the other set
+              differenceSet.add(element); // Adds it to the difference set
+            }
+          });
+          return differenceSet;
+        }
+      
+        // Checks if this set is a subset of another set
+        isSubset(otherSet) {
+          return this.set.every((element) => otherSet.has(element)); // Returns true if every element in this set is also in the other set
+        }
+      }
+
+      // Usage
+      const set1 = new CustomSet();
+      set1.add(1);
+      set1.add(2);
+      const set2 = new CustomSet();
+      set2.add(2);
+      set2.add(3);
+      console.log(set1.union(set2).set); // [1, 2, 3]
+      console.log(set1.intersection(set2).set); // [2]
+      console.log(set1.difference(set2).set); // [1]
+      console.log(set1.isSubset(set2)); // false
+          </code>
+        </pre>
+      </div>
+      <h2 class="text-2xl font-semibold my-4">Maps</h2>
+
+      <p><b>Purpose:</b>A Map holds key-value pairs where the keys can be any datatype. Keys are unique.</p>
+      <p><b>Key Methods:</b> .set(key, value), .get(key), .has(key), .delete(key), .clear(), .size.</p>
+      <p><b>Use Case:</b> When you need to associate unique keys with specific values.</p>
+      <p><b>Advantages vs objects:</b></p>
+      <ul class="mt-0">
+        <li>Keys can be any datatype.</li>
+        <li>Size can be easily determined with .size.</li>
+        <li>Iterating over a Map is easier than iterating over an object.</li>
+        <li>Maps maintain insertion order.</li>
+      </ul>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      const mySet = new Set();
+      mySet.add("apple");
+      mySet.add("banana");
+      mySet.add("apple"); // Duplicate, not added.
+      console.log(mySet.has("apple")); // true
+      console.log(mySet.size); // 2
+      mySet.delete("banana");
+          </code>
+        </pre>
+      </div>
+
+      <h2 class="text-2xl font-semibold my-4">Stack</h2>
+      <p>
+        <b>Explanation:</b> A Stack operates on the Last In, First Out (LIFO) principle. The last element added is the first to be removed. Operations are typically push (add to top) and pop (remove
+        from top).
+      </p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      let stack = [];
+      stack.push("Book 1"); // Add elements to the stack
+      stack.push("Book 2");
+      stack.pop(); // Removes "Book 2"     
+          </code>
+        </pre>
+      </div>
+
+      <h2 class="text-2xl font-semibold my-4">Queue</h2>
+      <p>
+        <b>Explanation:</b> A Queue operates on the First In, First Out (FIFO) principle. The first element added is the first to be removed. Operations are typically enqueue (add to end) and dequeue
+        (remove from front).
+      </p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      let queue = [];
+      queue.push("Person 1"); // Add elements to the queue
+      queue.push("Person 2");
+      queue.shift(); // Removes "Person 1"
+          </code>
+        </pre>
+      </div>
+
+      <h2 class="text-2xl font-semibold my-4">Linked List</h2>
+      <p>
+        <b>Explanation:</b> A Linked List is a data structure that consists of nodes where each node contains a value and a reference to the next node in the sequence. Linked Lists can be singly
+        linked (each node points to the next) or doubly linked (each node points to the next and previous).
+      </p>
+      <p><b>Use Case:</b> When you need to insert or delete elements frequently.</p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      class Node {
+        constructor(value) {
+          this.value = value;
+          this.next = null; // Points to the next node in the list
+          this.prev = null; // Points to the previous node in the list (null for the first node)
+        }
+      }
+      
+      class DoublyLinkedList {
+        constructor() {
+          this.head = null; // The first node of the list
+          this.tail = null; // The last node of the list
+        }
+      
+        // Adds a new node to the end of the list
+        add(value) {
+          const node = new Node(value);
+          if (!this.head) { // If the list is empty
+            this.head = node;
+            this.tail = node; // When the list is empty, head and tail are the same
+          } else {
+            node.prev = this.tail; // Set the new node's prev to the current tail
+            this.tail.next = node; // Set the current tail's next to the new node
+            this.tail = node; // Update the tail to be the new node
+          }
+        }
+      
+        // Removes a node by its value
+        remove(value) {
+          let current = this.head;
+          while (current) { // Traverse through the list
+            if (current.value === value) {
+              if (current.prev) { // Node is not the head
+                current.prev.next = current.next;
+              } else { // Node is the head
+                this.head = current.next;
+              }
+              if (current.next) { // Node is not the tail
+                current.next.prev = current.prev;
+              } else { // Node is the tail
+                this.tail = current.prev;
+              }
+              return; // Exit after removal
+            }
+            current = current.next; // Move to the next node
+          }
+        }
+      }
+      
+      // Usage
+      const list = new DoublyLinkedList();
+      list.add("Apple");
+      list.add("Banana");
+      list.remove("Banana");
+            
+          </code>
+        </pre>
+      </div>
+
+      <h2 class="text-2xl font-semibold my-4">Hash Table</h2>
+
+      <h2 class="text-2xl font-semibold my-4">code</h2>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+            //TODO
+            //Hash Tables
+            //Tree
+            //Graph
+            <!-- Hash Table: This is a key-value data structure, just like JavaScript Map. Thanks to the hash function, we can quickly find a value corresponding to a key.
+Tree: Data is grouped in nodes. We have access to the root node. Inserting new elements and searching for an element is highly efficient in this structure.
+Graph: Data is grouped in nodes. Graphs are used widely to solve daily problems, such as finding the shortest route to school or recommending new friends on social media. -->
+          </code>
+        </pre>
+      </div>
+    </main>
+    <footer class="bg-black text-white text-center p-5">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+</html>
