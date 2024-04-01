@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../../../css/output.css" rel="stylesheet" />
+    <script src="./scripts.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="../../../../index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+    <main class="container mx-auto flex-grow">
+      <h1 class="text-3xl font-bold text-center my-5">Lesson 2.2</h1>
+      <h2 class="text-2xl font-semibold my-4">Task</h2>
+
+      <p>
+        In this task, you’ll have to sort the numbers, but to make it more interesting, you won’t sort them from smallest to greatest. First, you need to get two numbers from the user. You can use
+        prompts to do that. Both need to be positive integers. The bigger one defines the size of your array.
+      </p>
+
+      <p>We can generate the array of the provided size this way:</p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+    const numbers = Array.from(Array(10).keys()); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+          </code>
+        </pre>
+      </div>
+      <p>
+        We want to sort all elements by the remainder when dividing by the second, smaller parameter. If the remainder is the same for two numbers, the smaller one should be before the greater one. We
+        can get the remainder through the modulo operator:
+      </p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+    console.log(11%4); // 3
+          </code>
+        </pre>
+      </div>
+      <p>Our sorted array will look this way for the size of the array equal to 10 and second parameter 3:</p>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+    [0, 3, 6, 9, 1, 4, 7, 2, 5, 8]
+          </code>
+        </pre>
+      </div>
+      <p>Please print the result in the console.</p>
+      <p>You should implement sorting in two ways:</p>
+      <ol class="list-decimal list-inside">
+        <li class="p-1">Using any of the basic sorting algorithms mentioned in this lesson or any other sorting algorithm found on the Internet that is no less optimal.</li>
+        <li class="p-1">Using the sort() method.</li>
+      </ol>
+
+      <h2 class="text-2xl font-semibold my-4">Solutions</h2>
+      <h3 class="my-2 text-lg font-semibold">Setting up</h3>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+    let firstNumber = 0;
+    let secondNumber = 0;
+    
+    // Get the first and second positive integers
+    while (firstNumber <= 0 || isNaN(firstNumber)) {
+      firstNumber = parseInt(prompt("Enter the first positive integer:"));
+    }
+    
+    while (secondNumber <= 0 || isNaN(firstNumber)) {
+      secondNumber = parseInt(prompt("Enter the second positive integer:"));
+    }
+    
+    // Get the maximum and minimum of the two numbers
+    const size = Math.max(firstNumber, secondNumber);
+    const min = Math.min(firstNumber, secondNumber);
+    
+    // Create an array of numbers from 0 to the maximum number
+    const numbers = Array.from(Array(size).keys());
+          </code>
+        </pre>
+
+      <h3 class="my-2 text-lg font-semibold">Sort ()</h3>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">    
+    function jsSort(arr) {
+      const copy = [...arr]; // Create a copy of the array
+    
+      // Sort the numbers by the remainder of the division by the minimum number
+      copy.sort((a, b) => {
+        const comparison = (a % min) - (b % min); // sort by the remainder
+        if (comparison === 0) {
+          // if the remainder is the same, sort by the number itself
+          return a - b;
+        }
+        return comparison; // return the comparison
+      });
+    
+      return copy;
+    }
+    
+    const jsSortNumbers = jsSort(numbers);
+    
+    document.getElementById("sortOutput").innerText = "Output in console: " + jsSortNumbers.join(", ");
+    console.log("sort():", jsSortNumbers);
+          </code>
+        </pre>
+      </div>
+      <p id="sortOutput"></p>
+      <h3 class="my-2 text-lg font-semibold">Bubble</h3>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">    
+      function bubbleSort(arr) {
+        const copy = [...arr]; // Create a copy of the array
+        let n = copy.length;
+        let swapped;
+      
+        // Outer loop for all elements of the array
+        for (let i = 0; i < n - 1; i++) {
+          swapped = false; // To keep track if any swap happened
+      
+          // Inner loop for comparing the adjacent elements
+          for (let j = 0; j < n - i - 1; j++) {
+            // Compare the adjacent elements
+            if (copy[j] % min > copy[j + 1] % min) {
+              // Swap if elements are in wrong order
+              let temp = copy[j];
+              copy[j] = copy[j + 1];
+              copy[j + 1] = temp;
+              swapped = true; // Marking that a swap happened
+            } else if (copy[j] % min === copy[j + 1] % min) {
+              // If the remainder is the same, sort by the number itself
+              if (copy[j] > copy[j + 1]) {
+                // Swap if elements are in wrong order
+                let temp = copy[j];
+                copy[j] = copy[j + 1];
+                copy[j + 1] = temp;
+                swapped = true; // Marking that a swap happened
+              }
+            }
+          }
+      
+          // If no two elements were swapped by inner loop, then break as the array is sorted
+          if (!swapped) break;
+        }
+      
+        return copy;
+      }
+      
+      const bubbleSortNumbers = bubbleSort(numbers);
+      
+      document.getElementById("bubbleOutput").innerText = "Output in console: " + bubbleSortNumbers.join(", ");
+      console.log("Bubble Sort:", bubbleSortNumbers);
+          </code>
+        </pre>
+      </div>
+      <p id="bubbleOutput"></p>
+    </main>
+    <footer class="bg-black text-white text-center p-5 mt-5">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+</html>
