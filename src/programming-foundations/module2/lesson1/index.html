@@ -27,34 +27,119 @@
         <pre style="white-space: pre-wrap">
           <code class="language-javascript">
       class MenuItem {
-        constructor(name) {
-          this.name = name;
+        constructor(name, price) {
+          this._name = name;
+          this._price = price;
+        }
+      
+        get name() {
+          return this._name;
+        }
+      
+        get price() {
+          return this._price;
+        }
+      
+        /**
+          * @param {any} price
+          */
+        set newPrice(price) {
+          this._price = price;
         }
       }
       
       class Pizza extends MenuItem {
-        constructor(name, toppings) {
-          super(name);
-          this.toppings = toppings;
+        constructor(name, price, toppings) {
+          super(name, price); // Correctly call super once, passing needed arguments
+          this._toppings = toppings;
+        }
+      
+        get toppings() {
+          return this._toppings;
         }
       }
       
       class Pasta extends MenuItem {
-        constructor(name, isVegetarian) {
-          super(name);
-          this.isVegetarian = isVegetarian;
+        constructor(name, price, isVegetarian) {
+          super(name, price); // Correctly call super once, passing needed arguments
+          this._isVegetarian = isVegetarian;
+        }
+      
+        get isVegetarian() {
+          return this._isVegetarian;
         }
       }
       
-      class Panckake extends MenuItem {
-        constructor(name, isSweet) {
-          super(name);
-          this.isSweet = isSweet;
+      class Pancake extends MenuItem {
+        constructor(name, price, isSweet) {
+          super(name, price); // Correctly call super once, passing needed arguments
+          this._isSweet = isSweet;
+        }
+      
+        get isSweet() {
+          return this._isSweet;
         }
       }
+      
+      // Creating instances
+      const pizza = new Pizza("Margherita", 10.99, ["tomato", "mozzarella"]);
+      const pasta = new Pasta("Spaghetti Carbonara", 7.99, false);
+      const pancake = new Pancake("Blueberry", 5.99, true);
+      
+      // Logging to console
+      console.log(pizza);
+      console.log(pasta);
+      console.log(pancake);
+      
+      console.log("Pizza:", "\n", "name:", pizza.name, "\n", "price:", pizza.price, "\n", "Toppings:", pizza.toppings);
+      console.log("Pasta:", "\n", "name:", pasta.name, "\n", "price:", pasta.price, "\n", "Is Vegetarian:", pasta.isVegetarian);
+      console.log("Pancake:", "\n", "name:", pancake.name, "\n", "price:", pancake.price, "\n", "Is Sweet:", pancake.isSweet);
+      pizza.newPrice = 12.99;
+      console.log(pizza.price); // 12.99
           </code>
         </pre>
       </div>
+
+      <h3 class="my-2 text-lg font-semibold">The Output in the console</h3>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+      Pizza {
+        _name: "Margherita",
+        _price: 10.99,
+        _toppings: ["tomato", "mozzarella"]
+      }
+
+      Pasta {
+        _name: "Spaghetti Carbonara",
+        _price: 7.99,
+        _isVegetarian: false
+      }
+
+      Pancake {
+        _name: "Blueberry",
+        _price: 5.99,
+        _isSweet: true
+      }
+
+      Pizza:
+      name: Margherita
+      price: 10.99
+      Toppings: ["tomato", "mozzarella"]
+
+      Pasta:
+      name: Spaghetti Carbonara
+      price: 7.99
+      Is Vegetarian: false
+
+      Pancake:
+      name: Blueberry
+      price: 5.99
+      Is Sweet: true
+      
+      12.99
+          </code>
+        </pre>
     </main>
     <footer class="bg-black text-white text-center p-5">
       <p>&copy; 2024 ME</p>
