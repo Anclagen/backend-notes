@@ -1,5 +1,5 @@
-let firstNumber = 3;
-let secondNumber = 23;
+let firstNumber = 0;
+let secondNumber = 0;
 
 // Get the first and second positive integers
 while (firstNumber <= 0 || isNaN(firstNumber)) {
