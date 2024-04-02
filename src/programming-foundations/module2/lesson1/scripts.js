@@ -1,55 +1,59 @@
 class MenuItem {
+  #name;
+  #price;
+
   constructor(name, price) {
-    this._name = name;
-    this._price = price;
+    this.#name = name;
+    this.#price = price;
   }
 
   get name() {
-    return this._name;
+    return this.#name;
   }
 
   get price() {
-    return this._price;
+    return this.#price;
   }
 
-  /**
-   * @param {any} price
-   */
   set newPrice(price) {
-    this._price = price;
+    this.#price = price;
   }
 }
 
 class Pizza extends MenuItem {
+  #toppings;
+
   constructor(name, price, toppings) {
     super(name, price);
-    this._toppings = toppings;
+    this.#toppings = toppings;
   }
 
   get toppings() {
-    return this._toppings;
+    return this.#toppings;
   }
 }
 
 class Pasta extends MenuItem {
+  #isVegetarian;
   constructor(name, price, isVegetarian) {
     super(name, price);
-    this._isVegetarian = isVegetarian;
+    this.#isVegetarian = isVegetarian;
   }
 
   get isVegetarian() {
-    return this._isVegetarian;
+    return this.#isVegetarian;
   }
 }
 
 class Pancake extends MenuItem {
+  #isSweet;
   constructor(name, price, isSweet) {
     super(name, price);
-    this._isSweet = isSweet;
+    this.#isSweet = isSweet;
   }
 
   get isSweet() {
-    return this._isSweet;
+    return this.#isSweet;
   }
 }
 

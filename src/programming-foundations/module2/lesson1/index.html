@@ -28,54 +28,61 @@
         <pre style="white-space: pre-wrap">
           <code class="language-javascript">
       class MenuItem {
+        #name;
+        #price;
+      
         constructor(name, price) {
-          this._name = name;
-          this._price = price;
+          this.#name = name;
+          this.#price = price;
         }
       
         get name() {
-          return this._name;
+          return this.#name;
         }
       
         get price() {
-          return this._price;
+          return this.#price;
         }
       
         set newPrice(price) {
-          this._price = price;
+          this.#price = price;
         }
       }
       
       class Pizza extends MenuItem {
+        #toppings;
+      
         constructor(name, price, toppings) {
-          super(name, price); // Correctly call super once, passing needed arguments
-          this._toppings = toppings;
+          super(name, price);
+          this.#toppings = toppings;
         }
       
         get toppings() {
-          return this._toppings;
+          return this.#toppings;
         }
       }
       
       class Pasta extends MenuItem {
+        #isVegetarian;
         constructor(name, price, isVegetarian) {
-          super(name, price); // Correctly call super once, passing needed arguments
-          this._isVegetarian = isVegetarian;
+          super(name, price);
+          this.#isVegetarian = isVegetarian;
         }
       
         get isVegetarian() {
-          return this._isVegetarian;
+          return this.#isVegetarian;
         }
       }
       
       class Pancake extends MenuItem {
+        #isSweet;
         constructor(name, price, isSweet) {
-          super(name, price); // Correctly call super once, passing needed arguments
-          this._isSweet = isSweet;
+          super(name, price);
+          this.#isSweet = isSweet;
         }
       
         get isSweet() {
-          return this._isSweet;
+          return this.#isSweet;
         }
       }
       
@@ -90,6 +97,8 @@
       console.log(pancake);
       
       console.log("Pizza:", "\n", "name:", pizza.name, "\n", "price:", pizza.price, "\n", "Toppings:", pizza.toppings);
+      //user ` instead of " to use template literals
+      console.log(`Pizza:\nname: ${pizza.name}\nprice: ${pizza.price}\nToppings: ${pizza.toppings.join(", ")}`);
       console.log("Pasta:", "\n", "name:", pasta.name, "\n", "price:", pasta.price, "\n", "Is Vegetarian:", pasta.isVegetarian);
       console.log("Pancake:", "\n", "name:", pancake.name, "\n", "price:", pancake.price, "\n", "Is Sweet:", pancake.isSweet);
       pizza.newPrice = 12.99;
@@ -103,21 +112,21 @@
         <pre style="white-space: pre-wrap">
           <code class="language-javascript">
       Pizza {
-        _name: "Margherita",
-        _price: 10.99,
-        _toppings: ["tomato", "mozzarella"]
+        #name: "Margherita",
+        #price: 10.99,
+        #toppings: ["tomato", "mozzarella"]
       }
 
       Pasta {
-        _name: "Spaghetti Carbonara",
-        _price: 7.99,
-        _isVegetarian: false
+        #name: "Spaghetti Carbonara",
+        #price: 7.99,
+        #isVegetarian: false
       }
 
       Pancake {
-        _name: "Blueberry",
-        _price: 5.99,
-        _isSweet: true
+        #name: "Blueberry",
+        #price: 5.99,
+        #isSweet: true
       }
 
       Pizza:
@@ -138,8 +147,27 @@
       12.99
           </code>
         </pre>
+      </div>
+
+      <h3 class="my-2 text-lg font-semibold">Private Classes</h3>
+      <p>
+        In JavaScript, there is no native support for private classes. However, you can use the hash symbol (#) to denote private properties. In the code below, the properties name, price, and
+        toppings are private. You can access them only within the class or through the getter methods defined in the class. If you try to access them outside the class, you will get an error. So:
+      </p>
+      <div class="p1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+  console.log(pizza.#price);
+          </code>
+        </pre>
+      </div>
+
+      <p>
+        This will throw an error. The error message will be something like:
+        <code class="bg-red-950 text-white block p-1">Uncaught SyntaxError: Private field '#price' must be declared in an enclosing class</code>.
+      </p>
     </main>
-    <footer class="bg-black text-white text-center p-5">
+    <footer class="bg-black text-white text-center p-5 my-2">
       <p>&copy; 2024 ME</p>
     </footer>
   </body>
