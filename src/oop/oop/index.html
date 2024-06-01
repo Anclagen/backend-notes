@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programming Foundations: Lesson 1 task</title>
+    <link href="../../css/output.css" rel="stylesheet" />
+    <script src="./scripts.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="../../../../index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+    <main class="container mx-auto flex-grow">
+      <h1 class="text-3xl font-bold text-center my-5">Object Orientated Design</h1>
+      <p class="my-2">
+        Object-oriented design is a programming paradigm that uses "objects" to design applications and computer programs. It utilizes several techniques from previously established paradigms,
+        including modularity, polymorphism, and encapsulation.
+      </p>
+      <h2 class="text-2xl font-semibold my-4">Main Principles</h2>
+      <ul class="list-disc list-inside">
+        <li class="my-2">
+          <b>Encapsulation:</b> This is the bundling of data (attributes) and methods (functions) that operate on the data into a single unit or class. It restricts direct access to some of an
+          object's components, which can prevent the accidental modification of data. Encapsulation is achieved by using private and public access specifiers.
+
+          <pre style="white-space: pre-wrap">
+            <code class="language-javascript">
+  class Car {
+    #make;
+    #model;
+    #year;
+
+    constructor(make, model, year) {
+        this.#make = make;
+        this.#model = model;
+        this.#year = year;
+    }
+
+    getInfo() {
+        return `${this.#year} ${this.#make} ${this.#model}`;
+    }
+
+    setYear(year) {
+        if (year > 1885) {  // the first car was made around 1885
+            this.#year = year;
+        } else {
+            console.log("Invalid year");
+        }
+    }
+  }
+
+  // Usage
+  let car = new Car("Toyota", "Corolla", 2020);
+  console.log(car.getInfo());    // Output: 2020 Toyota Corolla
+  car.setYear(2022);
+  console.log(car.getInfo());    // Output: 2022 Toyota Corolla
+  // car.#model = "Camry";    // Uncommenting this line will cause a SyntaxError
+  // console.log(car.#model);    // Uncommenting this line will cause a SyntaxError
+          </code>
+        </pre>
+        </li>
+        <li class="my-2">
+          <b>Inheritance</b> allows the creation of new classes based on existing classes by inheriting their properties and methods. This promotes code reusability and makes it easier to maintain and
+          extend code. For example, having a general class Animal and subclasses Teacher, Student, Sportsman, and Cook means any change in the Person class (like adding an age property) will
+          automatically be available in all subclasses.
+          <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+  class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    eat() {
+        console.log(`${this.name} is eating.`);
+    }
+    speak() {
+      console.log(`${this.name} makes a noise.`);
+  }
+  }
+
+  class Dog extends Animal {
+    speak() {
+        console.log(`${this.name} says Woof!`);
+    }
+  }
+
+  class Cat extends Animal {
+      speak() {
+          console.log(`${this.name} says Meow!`);
+      }
+  }
+
+  let dog = new Dog("Rex");
+  let cat = new Cat("Whiskers");
+
+  dog.eat();      // Output: Rex is eating.
+  cat.eat();      // Output: Whiskers is eating.
+          </code>
+        </pre>
+        </li>
+        <li class="my-2">
+          <b>Polymorphism</b> allows methods to do different things based on the object it is acting upon, even though they share the same name. In OOP, polymorphism is often achieved through method
+          overriding.
+
+          <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+  class Animal {
+    speak() {
+        console.log("The animal makes a sound.");
+    }
+  }
+  
+  class Dog extends Animal {
+      speak() {
+          console.log("The dog barks.");
+      }
+  }
+  
+  class Cat extends Animal {
+      speak() {
+          console.log("The cat meows.");
+      }
+  }
+  
+  // Usage
+  let animals = [new Dog(), new Cat(), new Animal()];
+  
+  animals.forEach(animal => animal.speak());
+  // Output:
+  // The dog barks.
+  // The cat meows.
+  // The animal makes a sound.
+          </code>
+        </pre>
+        </li>
+        <li class="my-2">
+          <b>Abstraction</b> is the concept of defining classes that represent abstract concepts with only the essential attributes and methods. These classes should hide unnecessary details from the
+          user and expose only what is necessary for the interaction.
+          <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+  class User {
+    constructor(username, password) {
+        this.username = username;
+        this.#setPassword(password);
+    }
+
+    #setPassword(password) {
+        // Simulate password hashing
+        this.passwordHash = `hashed_${password}`;
+    }
+
+    authenticate(password) {
+        return this.passwordHash === `hashed_${password}`;
+    }
+  }
+          
+  // Usage
+  let user = new User("john_doe", "secret123");
+  console.log(user.authenticate("secret123"));  // Output: true
+  console.log(user.password);  // Output: undefined (password is not directly accessible)
+          </code>
+        </pre>
+        </li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold my-4">Example</h2>
+      <p class="my-2">
+        Let's create a simple example of a class hierarchy using the concepts of inheritance and polymorphism. We'll create a base class called <code>Shape</code> and two subclasses called
+        <code>Circle</code> and <code>Rectangle</code>.
+      </p>
+      <pre style="white-space: pre-wrap">
+        <code class="language-javascript">
+  class Shape {
+    constructor(color) {
+        this.color = color;
+    }
+
+    getArea() {
+        return 0;
+    }
+
+    draw() {
+        console.log(`Drawing a ${this.color} shape.`);
+    } 
+
+    toString() {
+        return `A ${this.color} shape`;
+    }
+  }
+
+  class Circle extends Shape {
+    constructor(color, radius) {
+        super(color);
+        this.radius = radius;
+    }
+
+    getArea() {
+        return Math.PI * this.radius ** 2;
+    }
+
+    draw() {
+        console.log(`Drawing a ${this.color} circle with radius ${this.radius}.`);
+    }
+  }
+
+  class Rectangle extends Shape {
+    constructor(color, width, height) {
+        super(color);
+        this.width = width;
+        this.height = height;
+    }
+
+    getArea() {
+        return this.width * this.height;
+    }
+
+    draw() {
+        console.log(`Drawing a ${this.color} rectangle with width ${this.width} and height ${this.height}.`);
+    }
+  }
+
+  // Usage
+  let circle = new Circle("red", 5);
+  let rectangle = new Rectangle("blue", 4, 6);
+
+  console.log(circle.getArea());    // Output: 78.54
+  console.log(rectangle.getArea());    // Output: 24
+  circle.draw();    // Output: Drawing a red circle with radius 5.
+  rectangle.draw();    // Output: Drawing a blue rectangle with width 4 and height 6.
+        </code>
+      </pre>
+
+      <h2 class="text-2xl font-semibold my-4">Code Blocks</h2>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap"><code class="language-html">
+      &lt;p class="my-2"&gt;HTML GOES HERE.&lt;/p&gt;
+        </code></pre>
+      </div>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+            //JS goes here
+          </code>
+        </pre>
+      </div>
+    </main>
+    <footer class="bg-black text-white text-center p-5 mt-10">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+</html>

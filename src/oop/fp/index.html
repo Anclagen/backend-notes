@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programming Foundations: Lesson 1 task</title>
+    <link href="../../css/output.css" rel="stylesheet" />
+    <script src="./scripts.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="../../../../index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+    <main class="container mx-auto flex-grow px-1">
+      <h1 class="text-3xl font-bold text-center my-5">Unified Modeling Language</h1>
+      <p class="my-2">
+        Unified Modeling Language (UML) is a standardized general-purpose modeling language in software engineering. It is widely used to visualize the design of a system and to communicate the
+        system's design to others. UML provides a standard way to develop diagrams that visualize the design of a system.
+      </p>
+
+      <a href="https://www.smartdraw.com/uml-diagram/" class="my-2 block text-purple-800 font-semibold" target="_blank">UML Diagram Tool</a>
+
+      <a href="./formal-17-12-05(1).pdf" class="my-2 block text-purple-800 font-semibold" target="_blank">Publication: OMG® Unified Modeling Language® by OMG Object Management Group.</a>
+
+      <h2 class="text-2xl font-semibold my-4">Structural UML Diagrams</h2>
+      <ul class="list-disc pl-5">
+        <li>
+          <b>Class Diagram:</b> A static structure diagram that describes the system's classes, attributes, operations (methods), and object relationships. It is the main building block of
+          object-oriented modeling, used for both conceptual modeling and detailed modeling that translates into programming code.
+        </li>
+        <li>
+          <b>Package Diagram:</b> A static structure diagram that shows the system's packages, their classes, and object relationships. It organizes classes into packages and shows dependencies
+          between them.
+        </li>
+        <li>
+          <b>Object Diagram:</b> A static structure diagram that depicts the system's objects, attributes, operations (methods), and relationships at a specific point in time. It provides a snapshot
+          of the objects and their relationships.
+        </li>
+        <li>
+          <b>Component Diagram:</b> A static structure diagram that represents the system's components, their interfaces, and relationships. It illustrates the physical components and their
+          dependencies.
+        </li>
+        <li>
+          <b>Composite Structure Diagram:</b> A static structure diagram that shows the system's composite structures, their parts, and relationships. It details the internal structure of a class and
+          the relationships between its parts.
+        </li>
+        <li><b>Deployment Diagram:</b> A static structure diagram that describes the system's nodes, components, and their relationships. It shows the physical deployment and node dependencies.</li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold my-4">Behavioral UML Diagrams</h2>
+      <ul class="list-disc pl-5">
+        <li>
+          <b>Use Case Diagram:</b> A behavioral diagram created from use case analysis, showing relationships among actors and use cases. It helps identify, clarify, and organize system requirements.
+        </li>
+        <li>
+          <b>Activity Diagram:</b> A behavioral diagram that depicts the flow of control or objects in a system, similar to a flowchart. It shows the sequence of activities involved in a scenario.
+        </li>
+        <li>
+          <b>Sequence Diagram:</b> An interaction diagram showing object interactions arranged in time sequence. It illustrates the sequence of messages exchanged between objects to carry out a
+          scenario's functionality.
+        </li>
+        <li><b>State Diagram:</b> A behavioral diagram that shows the flow of control from one activity to another. It depicts the overall flow and sequence of activities in a scenario.</li>
+        <li>
+          <b>Communication Diagram:</b> An interaction diagram that shows how objects interact and in what order, arranged in time sequence. It details the objects, classes, and message exchanges
+          needed for a scenario.
+        </li>
+        <li>
+          <b>Interaction Overview Diagram:</b> An interaction diagram that combines elements of activity and sequence diagrams, showing the overall flow and sequence of interactions in a scenario.
+        </li>
+        <li><b>Timing Diagram:</b> An interaction diagram that illustrates object interactions and time constraints. It shows the sequence of messages and interactions over time.</li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold my-4">UML Relationship Notation</h2>
+      <p class="my-2">UML uses symbols to represent the visibility of class members and relationships between classes. The most common visibility symbols are:</p>
+      <ul class="list-disc pl-5">
+        <li><b>Public (+):</b> Visible to all classes.</li>
+        <li><b>Private (-):</b> Visible only within the class itself.</li>
+        <li><b>Protected (#):</b> Visible within the class and its subclasses.</li>
+        <li><b>Package (~):</b> Visible to classes within the same package.</li>
+      </ul>
+      <p class="my-2">Lines in UML diagrams denote relationships between components. The standard notation for these lines is as follows:</p>
+      <ul class="list-disc pl-5">
+        <li><b>Association:</b> A solid line connecting two classes, representing a relationship between them.</li>
+        <li><b>Aggregation:</b> A hollow diamond at the end of a line, representing a whole-part relationship.</li>
+        <li><b>Composition:</b> A filled diamond at the end of a line, representing a strong whole-part relationship where the part cannot exist without the whole.</li>
+        <li><b>Generalization:</b> A solid line with a hollow triangle at the end, representing an inheritance relationship between a superclass and a subclass.</li>
+        <li><b>Dependency:</b> A dashed line with an arrow, representing a dependency relationship where one class depends on another.</li>
+        <li><b>Realization:</b> A dashed line with a hollow triangle, representing an implementation relationship between an interface and a class that implements it.</li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold my-4">Code Blocks</h2>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap"><code class="language-html">
+      &lt;p class="my-2"&gt;HTML GOES HERE.&lt;/p&gt;
+        </code></pre>
+      </div>
+      <div class="p-1">
+        <pre style="white-space: pre-wrap">
+          <code class="language-javascript">
+            //JS goes here
+          </code>
+        </pre>
+      </div>
+    </main>
+    <footer class="bg-black text-white text-center p-5 mt-10">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+</html>

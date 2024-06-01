@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programming Foundations: Lesson 1 task</title>
+    <link href="../../css/output.css" rel="stylesheet" />
+    <script src="./scripts.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js" defer></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col min-h-svh">
+    <header class="p-5 bg-black">
+      <div class="container mx-auto px-5">
+        <a href="../../../../index.html" class="text-2xl text-gray-200">Home</a>
+      </div>
+    </header>
+    <main class="container mx-auto flex-grow ps-3">
+      <h1 class="text-3xl font-bold text-center my-5">JSON Notes</h1>
+      <div class="p-1" style="background: #272822">
+        <!-- Table of contents -->
+        <!-- arrow icon? 
+        https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_arrows
+        -->
+        <a href="#jsonDataTypes" class="block text-white p-2 my-2">JSON Data Types &#8594; </a>
+        <a href="#jsonSyntaxRules" class="block text-white p-2 my-2">JSON Syntax Rules &#8594; </a>
+        <a href="#jsonProcessing" class="block text-white p-2 my-2">JSON Processing &#8594;</a>
+        <a href="#jsonMethods" class="block text-white p-2 my-2">JSON.stringify() and JSON.parse() &#8594;</a>
+        <a href="#jsonWithFetch" class="block text-white p-2 my-2">JSON with Fetch API &#8594;</a>
+        <a href="#jsonWithLocalStorage" class="block text-white p-2 my-2">JSON with Local Storage &#8594;</a>
+        <a href="#jsonSchema" class="block text-white p-2 my-2">JSON Schema &#8594;</a>
+      </div>
+      <h2 class="text-2xl font-semibold my-4">Introduction</h2>
+      <p class="my-2">JSON stands for JavaScript Object Notation. It is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.</p>
+      <section id="jsonDataTypes">
+        <h2 class="text-2xl font-semibold my-4">JSON Data Types</h2>
+        <ul class="list-disc list-inside text-wrap">
+          <li>String: a sequence of characters, like "Hello World".</li>
+          <li>Number: an integer or a floating-point number, like 42 or 3.14.</li>
+          <li>Boolean: true or false.</li>
+          <li>Array: an ordered list of values, like ["apple", "banana", "cherry"].</li>
+          <li>Object: a collection of key/value pairs, like {"name": "John", "age": 30}.</li>
+          <li>Null: an empty value, like null.</li>
+        </ul>
+
+        <p>Example json object:</p>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        {
+          "name": "John",
+          "age": 30,
+          "job": null,
+          "isMarried": false,
+          "hobbies": ["reading", "swimming", "coding"],
+          "address": {
+            "street": "123 Main St",
+            "city": "New York",
+            "state": "NY"
+          }
+        }
+      </code></pre>
+      </section>
+      <section id="jsonSyntaxRules">
+        <h2 class="text-2xl font-semibold my-4">JSON Syntax Rules</h2>
+        <ul class="list-disc list-inside">
+          <li>JSON data is written as name/value pairs with property names written within double quotations, as are string values.</li>
+          <li>JSON data is separated by commas.</li>
+          <li>Curly braces hold objects.</li>
+          <li>Square brackets hold arrays.</li>
+          <li>No trailing decimals in number values, for example, “2.” is wrong.</li>
+          <li>No leading zeros in number values.</li>
+          <li>
+            No trailing commas, like in JavaScript, we can always put a comma at the end of the last property, for example:
+            <pre style="white-space: pre-wrap"><code class="language-javascript">
+            {
+              name: "John",
+              age: 30,
+              job: null,
+            }
+          </code></pre>
+          </li>
+        </ul>
+      </section>
+      <section id="jsonProcessing">
+        <h2 class="text-2xl font-semibold my-4">JSON Processing</h2>
+        <p>JSON data can be parsed and converted into JavaScript objects using the JSON.parse() method. The JSON.stringify() method can be used to convert JavaScript objects into JSON strings.</p>
+
+        <h2 class="text-2xl font-semibold my-4">JSON Example</h2>
+        <div class="p-1">
+          <pre style="white-space: pre-wrap"><code class="language-javascript">
+          const person = {
+            "name": "John",
+            "age": 30,
+            "job": null,
+            "isMarried": false,
+            "hobbies": ["reading", "swimming", "coding"],
+            "address": {
+              "street": "123 Main St",
+              "city": "New York",
+              "state": "NY"
+            }
+          };
+
+          const personJSON = JSON.stringify(person);
+          console.log(personJSON);
+
+          const personObject = JSON.parse(personJSON);
+          console.log(personObject);
+        </code></pre>
+
+          <p>Output:</p>
+          <pre style="white-space: pre-wrap"><code class="language-javascript">
+          {"name":"John","age":30,"job":null,"isMarried":false,"hobbies":["reading","swimming","coding"],"address":{"street":"123 Main St","city":"New York","state":"NY"}}
+          {name: "John", age: 30, job: null, isMarried: false, hobbies: Array(3), address: {…}}
+        </code></pre>
+        </div>
+      </section>
+      <section id="jsonMethods">
+        <h2 class="text-2xl font-semibold my-4">JSON.stringify()</h2>
+        <p>JSON.stringify() is used to convert JavaScript objects into JSON strings. It can take three parameters:</p>
+        <ul class="list-disc list-inside">
+          <li>Value: the JavaScript object to convert into a JSON string.</li>
+          <li>
+            Replacer: a function that alters the behavior of the stringification process, or an array of String and Number objects that serve as a whitelist for selecting the properties of the value
+            object to be included in the JSON string.
+          </li>
+          <li>Space: a String or Number object that's used to insert white space into the output JSON string for readability purposes.</li>
+        </ul>
+        <p>Example:</p>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        const person = {
+          name: 'John',
+          age: 30,
+          password: 'secret'
+        };
+        
+        // Remove the password property from the JSON string
+        const json = JSON.stringify(person, (key, value) => {
+          if (key === 'password') return undefined;
+          return value;
+        });
+        
+        console.log(json); // {"name":"John","age":30}
+      </code></pre>
+
+        <h2 class="text-2xl font-semibold my-4">JSON.parse()</h2>
+        <p>JSON.parse() is used to convert JSON strings into JavaScript objects. It can take two parameters:</p>
+        <ul class="list-disc list-inside">
+          <li>Text: the JSON string to parse.</li>
+          <li>Reviver: a function that transforms the results. This function is called for each member of the object.</li>
+        </ul>
+        <p>Example:</p>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        const json = '{"date":"2022-03-14"}';
+        const dateString = JSON.parse(json);
+        const dateObject = JSON.parse(json, (key, value) => {
+          if (key === "date") return new Date(value);
+          return value;
+        });
+        
+        console.log(dateString.date instanceof Date); // false
+        console.log(dateObject.date instanceof Date); // true
+      </code></pre>
+      </section>
+      <section id="jsonWithFetch">
+        <h2 class="text-2xl font-semibold my-4">JSON with Fetch API</h2>
+        <p>
+          Fetch API is used to make network requests. It returns a Promise that resolves to the Response to that request, whether it is successful or not. You can also use it to fetch JSON data from a
+          server.
+        </p>
+        <p>Example:</p>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+          .then(response => response.json())
+          .then(data => console.log(data));
+      </code></pre>
+      </section>
+      <section id="jsonWithLocalStorage">
+        <h2 class="text-2xl font-semibold my-4">JSON with Local Storage</h2>
+        <p>Local Storage is used to store data in the browser. You can store JSON data in local storage by converting it to a string using JSON.stringify().</p>
+        <p>Example:</p>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        const person = {
+          name: 'John',
+          age: 30
+        };
+        
+        localStorage.setItem('person', JSON.stringify(person));
+        
+        const personJSON = localStorage.getItem('person');
+        const personObject = JSON.parse(personJSON);
+        
+        console.log(personObject); // {name: "John", age: 30}
+      </code></pre>
+      </section>
+      <section id="jsonSchema">
+        <h2 class="text-2xl font-semibold my-4">JSON Schema</h2>
+        <p>
+          JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It is used to define the structure of JSON data for validation, documentation, and interaction control.
+        </p>
+        <ul class="list-disc list-inside ps-2">
+          <li>The $schema keyword defines the standard in which the schema is written and is linked to the official JSON Schema website.</li>
+          <li>The $id keyword is a unique URI.</li>
+          <li>The title and description keywords are annotation keywords that are descriptive only. They are here to help human users understand the data.</li>
+          <li>The type keyword is used for validation and defines the first constraint on our JSON data.</li>
+          <li>The required keyword is used to define the required properties of an object.</li>
+          <li>The properties keyword is used to define the properties of an object.</li>
+        </ul>
+
+        <p>Example:</p>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "$id": "https://example.com/person.schema.json",
+          "title": "Person",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"
+            }
+            "date": {
+              "type": "string",
+              "format": "date"
+            }
+            "interests": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+            "address": {
+              "type": "object",
+              "properties": {
+                "street": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "county": {
+                  "type": "string"
+                }
+                "post code": {
+                  "type": "string"
+                }
+              },
+              "required": ["street", "city", "county", "post code"]
+            }
+          },
+          "required": ["name", "age", "date", "interests", "address"]
+        }
+      </code></pre>
+      </section>
+      <section id="jsonValidation">
+        <h2 class="text-2xl font-semibold my-4">JSON Validation</h2>
+        <p>JSON Schema can be used to validate JSON data. There are various tools available to validate JSON data against a JSON Schema. Some of the popular tools are:</p>
+        <ul class="list-disc list-inside">
+          <li>JSON Schema Validator</li>
+          <li>JSON Schema Lint</li>
+          <li>JSON Schema Test</li>
+          <li>JSON Schema Online</li>
+        </ul>
+      </section>
+      <section id="jsonLD">
+        <h2 class="text-2xl font-semibold my-4">JSON-LD</h2>
+        <p>
+          JSON-LD (JavaScript Object Notation for Linked Data) is a lightweight Linked Data format. It is easy for humans to read and write and easy for machines to parse and generate. JSON-LD is
+          designed around the concept of a "context" to provide additional meaning to the data.
+        </p>
+        <p>Example:</p>
+        <pre style="white-space: pre-wrap"><code class="language-javascript">
+        {
+          "@context": "http://schema.org/",
+          "@type": "Person",
+          "name": "John Doe",
+          "jobTitle": "Software Developer",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Main St",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10001"
+          }
+        }
+      </code></pre>
+      </section>
+    </main>
+    <footer class="bg-black text-white text-center p-5 mt-10">
+      <p>&copy; 2024 ME</p>
+    </footer>
+  </body>
+</html>
